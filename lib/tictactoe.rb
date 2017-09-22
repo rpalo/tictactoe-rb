@@ -31,5 +31,18 @@ class TicTacToe
   def col(n)
     @board.map { |row| row[n - 1] }
   end
+
+  def winner
+    ALLOWED_MARKS.each do |mark|
+      ALLOWED_SPOTS.each do |index|
+        if row(index).all? { |item| item == mark }
+          return [true, mark]
+        elsif col(index).all? { |item| item == mark }
+          return [true, mark]
+        end
+      end
+    end
+    [false, nil]
+  end
 end
 

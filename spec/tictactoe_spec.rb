@@ -46,13 +46,24 @@ describe TicTacToe do
 
   describe ".winner" do
     context "given three x's in a row" do
-      it "returns true" do
-        skip
-        game = TicTacToe.new
-        game.mark({value: :x, row: 1, col: 1})
-        game.mark({value: :x, row: 1, col: 2})
-        game.mark({value: :x, row: 1, col: 3})
-        expect(game.winner).to equal(true)
+      it "returns x wins" do
+        @game.mark(:x, TOP_LEFT)
+        @game.mark(:x, TOP_MIDDLE)
+        @game.mark(:x, TOP_RIGHT)
+        win = @game.winner
+        expect(win[0]).to equal(true)
+        expect(win[1]).to equal(:x)
+      end
+    end
+    
+    context "given three o's in a column" do
+      it "returns o wins" do
+        @game.mark(:o, TOP_LEFT)
+        @game.mark(:o, MIDDLE_LEFT)
+        @game.mark(:o, BOTTOM_LEFT)
+        win = @game.winner
+        expect(win[0]).to equal(true)
+        expect(win[1]).to equal(:o)
       end
     end
   end
