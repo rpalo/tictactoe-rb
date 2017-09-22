@@ -119,4 +119,13 @@ describe TicTacToe do
       end
     end
   end
+
+  describe "play" do
+    context "Player plays against another player and x gets three" do
+      it "should report that x wins" do
+        skip
+      end
+    end
+  end
+  
 end
