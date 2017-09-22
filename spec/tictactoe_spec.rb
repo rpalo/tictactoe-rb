@@ -31,6 +31,8 @@ describe TicTacToe do
 
     context "Given an x at the 0th row" do
       it "Should complain" do
+        bad_mark = Spot.new(row: 0, col: 2)
+        expect { @game.mark(:x, bad_mark) }.to raise_error(ArgumentError)
       end
     end
 
