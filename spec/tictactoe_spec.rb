@@ -42,6 +42,13 @@ describe TicTacToe do
         expect { @game.mark(:x, bad_mark) }.to raise_error(ArgumentError)
       end
     end
+
+    context "When trying to mark an already taken spot" do
+      it "Should complain" do
+        @game.mark(:x, TOP_LEFT)
+        expect { @game.mark(:o, TOP_LEFT) }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe ".winner" do
@@ -64,6 +71,17 @@ describe TicTacToe do
         win = @game.winner
         expect(win[0]).to equal(true)
         expect(win[1]).to equal(:o)
+      end
+    end
+    
+    context "given three x's in a diagonal" do
+      it "returns x wins" do
+        @game.mark(:x, TOP_LEFT)
+        @game.mark(:x, MIDDLE_MIDDLE)
+        @game.mark(:x, BOTTOM_RIGHT)
+        win = @game.winner
+        expect(win[0]).to equal(true)
+        expect(win[1]).to equal(:x)
       end
     end
   end
