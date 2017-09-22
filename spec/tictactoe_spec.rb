@@ -4,6 +4,7 @@ describe TicTacToe do
 
   before :each do
     @game = TicTacToe.new
+    allow(@game).to receive(:puts)
   end
 
   describe ".mark" do
@@ -89,27 +90,32 @@ describe TicTacToe do
   describe "player_input" do
     context "Player puts in a valid row, column string with comma space" do
       it "returns the appropriate spot" do
-        skip
+        allow(@game).to receive(:gets).and_return("2, 2\n")
+        expect(@game.player_input).to eq(MIDDLE_MIDDLE)
       end
     end
     context "Player puts in a valid row, column string with just space" do
       it "returns the appropriate spot" do
-        skip
+        allow(@game).to receive(:gets).and_return("2 2\n")
+        expect(@game.player_input).to eq(MIDDLE_MIDDLE)
       end
     end
     context "Player puts in a valid row, column string with just comma" do
       it "returns the appropriate spot" do
-        skip
+        allow(@game).to receive(:gets).and_return("2,2\n")
+        expect(@game.player_input).to eq(MIDDLE_MIDDLE)
       end
     end
     context "Player puts in a valid row, column string with no separation" do
       it "returns the appropriate spot" do
-        skip
+        allow(@game).to receive(:gets).and_return("22\n")
+        expect(@game.player_input).to eq(MIDDLE_MIDDLE)
       end
     end
     context "Player puts in a invalid row, column string with letter" do
       it "retries until it's right" do
-        skip
+        allow(@game).to receive(:gets).and_return("2, a\n", "2, 2\n")
+        expect(@game.player_input).to eq(MIDDLE_MIDDLE)
       end
     end
   end

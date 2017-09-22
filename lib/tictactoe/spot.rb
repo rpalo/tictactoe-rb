@@ -5,6 +5,10 @@ class Spot
     @row = row
     @col = col 
   end
+
+  def ==(other)
+    @row == other.row && @col == other.col
+  end
 end
 
 TOP_LEFT = Spot.new(row: 1, col:1)
