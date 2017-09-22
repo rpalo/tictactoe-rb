@@ -4,14 +4,18 @@ require_relative 'tictactoe/spot'
 # Basic Game Controller for Tic Tac Toe
 class TicTacToe
   ALLOWED_MARKS = [:x, :o]
+  NEXT_MOVER = { :x => :o, :o => :x }
   ALLOWED_SPOTS = (1..3)
 
-  def initialize
+  def initialize(enemy=nil)
     @board = [
       [nil, nil, nil],
       [nil, nil, nil],
       [nil, nil, nil],
     ]
+    @empties = @board.length * @board.first.length
+    @current = :x
+    @enemy = enemy
   end
 
   def mark(value, spot)
@@ -23,6 +27,7 @@ class TicTacToe
     end
     raise ArgumentError, "#{spot} already taken" if @board[spot.row - 1][spot.col - 1]
     @board[spot.row - 1][spot.col - 1] = value
+    @empties -= 1
   end
 
   def row(n)
@@ -56,6 +61,28 @@ class TicTacToe
       end
     end
     [false, nil]
+  end
+
+  def player_input
+    loop do
+      puts "Input <row>, <column> to play."
+      input = gets
+      numbers = input.scan(/[0-9]/)
+      if numbers.length == 2
+        return Spot.new(row: numbers[0].to_i, col: numbers[1].to_i)
+      end
+    end
+  end
+
+  def play
+    while @empties > 0 && winner[0] == false
+      if @current == :x or @enemy == nil
+        mark @current, player_input
+      else
+        mark @current, @enemy.move
+      end
+    end
+    winner[1]
   end
 end
 

@@ -85,4 +85,32 @@ describe TicTacToe do
       end
     end
   end
+
+  describe "player_input" do
+    context "Player puts in a valid row, column string with comma space" do
+      it "returns the appropriate spot" do
+        skip
+      end
+    end
+    context "Player puts in a valid row, column string with just space" do
+      it "returns the appropriate spot" do
+        skip
+      end
+    end
+    context "Player puts in a valid row, column string with just comma" do
+      it "returns the appropriate spot" do
+        skip
+      end
+    end
+    context "Player puts in a valid row, column string with no separation" do
+      it "returns the appropriate spot" do
+        skip
+      end
+    end
+    context "Player puts in a invalid row, column string with letter" do
+      it "retries until it's right" do
+        skip
+      end
+    end
+  end
 end
