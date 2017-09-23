@@ -9,6 +9,10 @@ class Spot
   def ==(other)
     @row == other.row && @col == other.col
   end
+
+  def to_s
+    "<Spot Row: #{@row}, Col: #{@col}>"
+  end
 end
 
 TOP_LEFT = Spot.new(row: 1, col:1)

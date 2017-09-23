@@ -32,6 +32,7 @@ module TicTacToe
 
     def play
       while @board.empties > 0 && winner[0] == false
+        puts @board.output
         begin
           if @current == :x or @enemy == nil
             mark @current, player_input
@@ -44,6 +45,7 @@ module TicTacToe
         end
         @current = NEXT_MOVER[@current]
       end
+      puts @board.output
       winner[1]
     end
 

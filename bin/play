@@ -1,4 +1,40 @@
 #!/usr/bin/env ruby
 
-require 'tictactoe'
-Game.play
+require_relative '../lib/tictactoe'
+
+def usage
+  "Usage: #{$PROGRAM_NAME} [basic/random/human]"
+end
+if ARGV.empty?
+  puts usage
+  exit 1
+end
+
+option = ARGV.pop
+
+case option
+when 'basic'
+  puts '<<< TIC TAC TOE vs. BASIC ENEMY >>>'
+  enemy = TicTacToe::BasicEnemy.new
+when 'random'
+  puts '<<< TIC TAC TOE vs. RANDOM ENEMY >>>'
+  enemy = TicTacToe::RandomEnemy.new
+when 'human'
+  puts '<<< TIC TAC TOE : 2 PLAYER MODE >>>'
+  enemy = nil
+else
+  puts usage && exit(1)
+end
+
+game = TicTacToe::Game.new(enemy)
+result = game.play
+
+case result
+when :x
+  puts 'X wins!'
+when :o
+  puts 'O wins!'
+when nil
+  puts 'Tie game!'
+end
+puts 'Thanks for playing!'

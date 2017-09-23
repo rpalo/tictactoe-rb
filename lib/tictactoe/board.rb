@@ -88,12 +88,13 @@ module TicTacToe
       end
       <<~HEREDOC
 
-        -------------
-        | #{spaces[0].join(" | ")} |
-        | #{spaces[1].join(" | ")} |
-        | #{spaces[2].join(" | ")} |
-        -------------
-
+          -------------
+        1 | #{spaces[0].join(" | ")} |
+        2 | #{spaces[1].join(" | ")} |
+        3 | #{spaces[2].join(" | ")} |
+          -------------
+            1   2   3
+            
       HEREDOC
     end
 
