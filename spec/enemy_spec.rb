@@ -15,7 +15,7 @@ describe TicTacToe::Enemy do
     end
   end
 
-  describe "BasicEnemy" do
+  describe TicTacToe::BasicEnemy do
 
     before :each do
       @enemy = TicTacToe::BasicEnemy.new
@@ -53,6 +53,28 @@ describe TicTacToe::Enemy do
         end
         all_the_same = results.all? { |item| item == results.first }
         expect(all_the_same).not_to eq(true)
+      end
+    end
+  end
+
+  describe TicTacToe::DefensiveEnemy do
+
+    before :each do
+      @enemy = TicTacToe::DefensiveEnemy.new
+    end
+
+    context "If no danger" do
+      it "should just take the next available spot" do
+        @board.mark(:x, TOP_LEFT)
+        expect(@enemy.move @board).to eq(TOP_MIDDLE)
+      end
+    end
+
+    context "If x is about to win" do
+      it "should try to stop that from happening" do
+        @board.mark(:x, TOP_LEFT)
+        @board.mark(:x, BOTTOM_LEFT)
+        expect(@enemy.move @board).to eq(MIDDLE_LEFT)
       end
     end
   end

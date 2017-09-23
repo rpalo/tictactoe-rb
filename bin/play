@@ -3,7 +3,7 @@
 require_relative '../lib/tictactoe'
 
 def usage
-  "Usage: #{$PROGRAM_NAME} [basic/random/human]"
+  "Usage: #{$PROGRAM_NAME} [basic/random/defensive/human]"
 end
 if ARGV.empty?
   puts usage
@@ -19,6 +19,9 @@ when 'basic'
 when 'random'
   puts '<<< TIC TAC TOE vs. RANDOM ENEMY >>>'
   enemy = TicTacToe::RandomEnemy.new
+when 'defensive'
+  puts '<<< TIC TAC TOE vs. DEFENSIVE ENEMY >>>'
+  enemy = TicTacToe::DefensiveEnemy.new
 when 'human'
   puts '<<< TIC TAC TOE : 2 PLAYER MODE >>>'
   enemy = nil
