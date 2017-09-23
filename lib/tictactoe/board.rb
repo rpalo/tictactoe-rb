@@ -37,6 +37,10 @@ module TicTacToe
       @empties -= 1
     end
 
+    def open?(row: nil, col: nil)
+      @board[row - 1][col - 1] == nil
+    end
+
     def rows
       @board
     end

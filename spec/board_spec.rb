@@ -6,6 +6,21 @@ describe TicTacToe::Board do
     @board = TicTacToe::Board.new
   end
 
+  describe "open?" do
+    context "Given a board with that square open" do
+      it "should return true" do
+        expect(@board.open?(row:1, col: 1)).to eq(true)
+      end
+    end
+
+    context "Given a board with that square taken" do
+      it "should return false" do
+        @board.mark(:x, TOP_LEFT)
+        expect(@board.open?(row: 1, col: 1)).to eq(false)
+      end
+    end
+  end
+
   describe ".mark" do
     context "Given an x in the bottom left" do
       it "Should have an x in the bottom left" do

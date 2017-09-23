@@ -37,4 +37,24 @@ describe TicTacToe::Enemy do
       end
     end
   end
+
+  describe TicTacToe::RandomEnemy do
+
+    before :each do
+      @enemy = TicTacToe::RandomEnemy.new
+    end
+
+    context "Given a blank board" do
+      it "Should not provide the same thing every time" do
+        # Hard to test beyond that for randomness
+        results = []
+        10.times do
+          results << @enemy.move(@board)
+        end
+        all_the_same = results.all? { |item| item == results.first }
+        expect(all_the_same).not_to eq(true)
+      end
+    end
+  end
+
 end

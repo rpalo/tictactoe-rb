@@ -23,4 +23,17 @@ module TicTacToe
     end
 
   end
+
+  # Enemy that keeps trying a random spot until one works
+  class RandomEnemy < Enemy
+
+    def move(board)
+      loop do
+        row = rand(1..3)
+        col = rand(1..3)
+        return Spot.new(row: row, col: col) if board.open?(row: row, col: col)
+      end
+    end
+
+  end
 end
