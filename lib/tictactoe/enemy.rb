@@ -37,7 +37,7 @@ module TicTacToe
 
   end
 
-  # Enemy that competes via breadth first search
+  # Enemy that tries to stop the player from getting 3
   class DefensiveEnemy < Enemy
 
     def move(board)
