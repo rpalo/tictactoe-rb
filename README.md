@@ -1,8 +1,9 @@
 # Tic Tac Toe
 
-**WORK IN PROGRESS**
 
 An implementation of Tic Tac Toe for the challenge posted on [Dev.to](https://dev.to/briandgls/tic-tac-toe-a-devto-community-challenge).  Supposed to be 30-60 minutes.  We'll see how that goes.
+
+![Demo of gameplay](img/demo.gif)
 
 ## Test It Out
 
