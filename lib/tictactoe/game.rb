@@ -32,11 +32,17 @@ module TicTacToe
 
     def play
       while @board.empties > 0 && winner[0] == false
-        if @current == :x or @enemy == nil
-          mark @current, player_input
-        else
-          mark @current, @enemy.move
+        begin
+          if @current == :x or @enemy == nil
+            mark @current, player_input
+          else
+            mark @current, @enemy.move
+          end
+        rescue ArgumentError, FullBoardError => e
+          puts e
+          retry
         end
+        @current = NEXT_MOVER[@current]
       end
       winner[1]
     end

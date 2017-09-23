@@ -89,6 +89,39 @@ describe TicTacToe::Game do
         expect(@game.play).to eq(:x)
       end
     end
+
+    context "Player plays against another player and cat's game" do
+      it "should return nil as winner" do
+        moves = [
+          "11",  # x
+          "12",  # o
+          "13",  # x
+          "22",  # o
+          "21",  # x
+          "23",  # o
+          "33",  # x
+          "31",  # o
+          "32",  # x
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(nil)
+      end
+    end
+
+    context "player plays an incorrect move" do
+      it "should allow for retry and continue" do
+        moves = [
+          "11", # x
+          "11", # o
+          "12", # o retry after bad move
+          "21", # x
+          "22", # o
+          "31", # x
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(:x)
+      end
+    end
   end
 
 end

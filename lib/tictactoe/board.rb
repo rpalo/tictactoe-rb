@@ -70,5 +70,20 @@ module TicTacToe
       [false, nil]
     end
 
+    def output
+      spaces = @board.map do |row|
+        row.map { |item| item || " " }
+      end
+      <<~HEREDOC
+
+        -------------
+        | #{spaces[0].join(" | ")} |
+        | #{spaces[1].join(" | ")} |
+        | #{spaces[2].join(" | ")} |
+        -------------
+
+      HEREDOC
+    end
+
   end
 end
