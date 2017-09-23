@@ -19,6 +19,10 @@ module TicTacToe
       @empties = @board.length * @board.first.length
     end
 
+    def open?(row: nil, col: nil)
+      @board[row - 1][col - 1] == nil
+    end
+
     def mark(value, spot)
       unless ALLOWED_MARKS.include? value
         raise ArgumentError, "#{value} not an allowed mark"
@@ -29,16 +33,12 @@ module TicTacToe
       if @empties < 1
         raise FullBoardError
       end
-      if @board[spot.row - 1][spot.col - 1]
+      unless open?(row: spot.row, col: spot.col)
         raise ArgumentError, "#{spot} already taken"
       end
 
       @board[spot.row - 1][spot.col - 1] = value
       @empties -= 1
-    end
-
-    def open?(row: nil, col: nil)
-      @board[row - 1][col - 1] == nil
     end
 
     def rows

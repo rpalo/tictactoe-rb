@@ -75,7 +75,7 @@ describe TicTacToe::Game do
     end
   end
 
-  describe "play" do
+  describe "play with two players" do
     context "Player plays against another player and x gets three" do
       it "should report that x wins" do
         moves = [
@@ -120,6 +120,52 @@ describe TicTacToe::Game do
         ]
         allow(@game).to receive(:gets).and_return(*moves)
         expect(@game.play).to eq(:x)
+      end
+    end
+  end
+
+  describe "play against a computer" do
+
+    before :each do
+      @game = TicTacToe::Game.new(TicTacToe::BasicEnemy.new)
+      allow(@game).to receive(:puts)
+    end
+
+    context "player plays against a basic enemy and gets three" do
+      it "should say that x wins" do
+        moves = [
+          "11", # x.  Expect o to take 12
+          "21", # x.  Expect o to take 13
+          "31"
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(:x)
+      end
+    end
+
+    context "player plays against a basic enemy and enemy gets 3" do
+      it "should say that o wins" do
+        moves = [
+          "21", # x.  Expect o to take 11
+          "22", # x.  Expect o to take 12
+          "31", # x.  Expect o to take 13 and win
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(:o)
+      end
+    end
+
+    context "player plays against a basic enemy and ties" do
+      it "should return nil" do
+        moves = [
+          "13", # x.  Expect o to take 11
+          "21", # x.  Expect o to take 12
+          "22", # x.  Expect o to take 23
+          "32", # x.  Expect o to take 31
+          "33", # x.  This should end the game.
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(nil)
       end
     end
   end

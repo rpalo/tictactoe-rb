@@ -7,7 +7,7 @@ An implementation of Tic Tac Toe for the challenge posted on [Dev.to](https://de
 ## Goals
 
 - [x] Get a working tic tac toe game, where the user can put x's into whatever square they want.
-- [ ] Make them alternate with the computer, with the computer putting in the first possible spot.
+- [x] Make them alternate with the computer, with the computer putting in the first possible spot.
 - [ ] *Stretch goal*: Make the AI brute force the options.
 - [ ] *Super Stretch Goal*: Make the AI use an actual graph-based search pattern.
 - [ ] *Stretch goal*: Make a GUI for it.

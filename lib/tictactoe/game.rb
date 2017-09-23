@@ -36,7 +36,7 @@ module TicTacToe
           if @current == :x or @enemy == nil
             mark @current, player_input
           else
-            mark @current, @enemy.move
+            mark @current, @enemy.move(@board)
           end
         rescue ArgumentError, FullBoardError => e
           puts e
