@@ -8,7 +8,7 @@ module TicTacToe
     ALLOWED_MARKS = [:x, :o]
     ALLOWED_SPOTS = (1..3)
 
-    attr_reader :empties, :board
+    attr_reader :empties
 
     def initialize
       @board = [
@@ -36,13 +36,21 @@ module TicTacToe
       @board[spot.row - 1][spot.col - 1] = value
       @empties -= 1
     end
+
+    def rows
+      @board
+    end
     
     def row(n)
       @board[n - 1]
     end
-
+        
     def col(n)
       @board.map { |row| row[n - 1] }
+    end
+
+    def cols
+      ALLOWED_SPOTS.map { |spot| col(spot) }
     end
 
     def right_diag

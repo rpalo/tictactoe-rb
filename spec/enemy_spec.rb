@@ -15,10 +15,25 @@ describe TicTacToe::Enemy do
     end
   end
 
-  describe "move" do
+  describe "BasicEnemy" do
+
+    before :each do
+      @enemy = TicTacToe::BasicEnemy.new
+    end
+
     context "Given a blank board" do
       it "should provide a valid move" do
-        skip
+        expect(@enemy.move @board).to eq(TOP_LEFT)
+      end
+    end
+
+    context "Given the first four spots taken" do
+      it "should provide the middle spot" do
+        @board.mark(:x, TOP_LEFT)
+        @board.mark(:x, TOP_MIDDLE)
+        @board.mark(:x, TOP_RIGHT)
+        @board.mark(:x, MIDDLE_LEFT)
+        expect(@enemy.move @board).to eq(MIDDLE_MIDDLE)
       end
     end
   end
