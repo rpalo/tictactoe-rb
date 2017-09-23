@@ -78,7 +78,15 @@ describe TicTacToe::Game do
   describe "play" do
     context "Player plays against another player and x gets three" do
       it "should report that x wins" do
-        skip
+        moves = [
+          "1, 1", # x
+          "1, 2", # o
+          "2, 1", # x
+          "1, 3", # o
+          "3, 1", # x  => x has 3 in a row
+        ]
+        allow(@game).to receive(:gets).and_return(*moves)
+        expect(@game.play).to eq(:x)
       end
     end
   end

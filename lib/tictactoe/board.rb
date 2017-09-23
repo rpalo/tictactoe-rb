@@ -8,6 +8,8 @@ module TicTacToe
     ALLOWED_MARKS = [:x, :o]
     ALLOWED_SPOTS = (1..3)
 
+    attr_reader :empties
+
     def initialize
       @board = [
         [nil, nil, nil],
